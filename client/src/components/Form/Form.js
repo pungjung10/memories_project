@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import { TextField, Button, Typography, Paper } from "@material-ui/core";
 import FileBase from "react-file-base64";
+import { useDispatch } from "react-redux";
 
 import useStyles from "./styles";
+import { createPost } from "../../actions/posts";
 
 const From = () => {
 
@@ -15,10 +17,13 @@ const From = () => {
     });
 
     const classes = useStyles();
+    const dispatch = useDispatch();
 
-    const handleSubmit = () => {
-        // e.preventDefault();
+    //when click the submit button
+    const handleSubmit = (e) => {
+        e.preventDefault(); //not to get the refresh in the browser
     
+        dispatch(createPost(postData));
         // if (currentId === 0) {
         //   dispatch(createPost(postData));
         //   clear();
@@ -26,7 +31,7 @@ const From = () => {
         //   dispatch(updatePost(currentId, postData));
         //   clear();
         // }
-    };
+    };//-> go to reducer
 
     const clear = () => {
         // setCurrentId(0);
